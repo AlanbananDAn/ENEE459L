@@ -17,7 +17,7 @@
     },
     "nvme_present": {
         "value": true,
-        "model": null,
+        "model": "PNY CS2241 500GB SSD",
         "source": "/sys/block/nvme0n1",
         "status": "ok"
     },
@@ -40,37 +40,37 @@
         "status": "ok"
     },
     "thermal_zones": {
-        "value": 52.05683333333334,
+        "value": 52.33283333333333,
         "zones": [
             {
                 "zone": "thermal_zone0",
                 "type": "cpu-thermal",
-                "temp_c": 52.187
+                "temp_c": 52.656
             },
             {
                 "zone": "thermal_zone7",
                 "type": "soc2-thermal",
-                "temp_c": 50.75
+                "temp_c": 51.031
             },
             {
                 "zone": "thermal_zone5",
                 "type": "soc0-thermal",
-                "temp_c": 52.187
+                "temp_c": 52.343
             },
             {
                 "zone": "thermal_zone1",
                 "type": "gpu-thermal",
-                "temp_c": 51.531
+                "temp_c": 51.843
             },
             {
                 "zone": "thermal_zone8",
                 "type": "tj-thermal",
-                "temp_c": 52.843
+                "temp_c": 53.062
             },
             {
                 "zone": "thermal_zone6",
                 "type": "soc1-thermal",
-                "temp_c": 52.843
+                "temp_c": 53.062
             }
         ],
         "source": "/sys/class/thermal/thermal_zone*/temp",

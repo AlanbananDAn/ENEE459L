@@ -189,7 +189,7 @@ def probe_nvme_present(root: Path = Path("/")) -> dict[str, Any]:
     the right branch.
     """
     src = "/sys/block/nvme0n1"
-    model_path = Path(root) / "sys/block/nvme0n1/model"
+    model_path = Path(root) / "sys/class/nvme/nvme0/model"
     model = None
     if model_path.exists():
         try:
