@@ -1,0 +1,85 @@
+{
+    "module_model": {
+        "value": "NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super",
+        "source": "/proc/device-tree/model",
+        "status": "ok"
+    },
+    "memory_total_kb": {
+        "value": 7789952,
+        "source": "/proc/meminfo",
+        "status": "ok"
+    },
+    "root_source": {
+        "value": "/dev/nvme0n1p1",
+        "kind": "nvme",
+        "source": "/proc/mounts",
+        "status": "ok"
+    },
+    "nvme_present": {
+        "value": true,
+        "model": null,
+        "source": "/sys/block/nvme0n1",
+        "status": "ok"
+    },
+    "pcie_link": {
+        "value": "\t\tLnkSta:\tSpeed 8GT/s (downgraded), Width x4 (ok)",
+        "negotiated": {
+            "raw": "LnkSta:\tSpeed 8GT/s (downgraded), Width x4 (ok)",
+            "gts": 8.0,
+            "width": 4,
+            "gen": 3
+        },
+        "capability": {
+            "raw": "LnkCap:\tPort #0, Speed 16GT/s, Width x4, ASPM L1, Exit Latency L1 <64us",
+            "gts": 16.0,
+            "width": 4,
+            "gen": 4
+        },
+        "interpretation": "drive capable of Gen4, link running at Gen3 \u2014 expected on this carrier board, whose M.2 Key-M slot is wired Gen3 x4",
+        "source": "lspci -vv",
+        "status": "ok"
+    },
+    "thermal_zones": {
+        "value": 52.05683333333334,
+        "zones": [
+            {
+                "zone": "thermal_zone0",
+                "type": "cpu-thermal",
+                "temp_c": 52.187
+            },
+            {
+                "zone": "thermal_zone7",
+                "type": "soc2-thermal",
+                "temp_c": 50.75
+            },
+            {
+                "zone": "thermal_zone5",
+                "type": "soc0-thermal",
+                "temp_c": 52.187
+            },
+            {
+                "zone": "thermal_zone1",
+                "type": "gpu-thermal",
+                "temp_c": 51.531
+            },
+            {
+                "zone": "thermal_zone8",
+                "type": "tj-thermal",
+                "temp_c": 52.843
+            },
+            {
+                "zone": "thermal_zone6",
+                "type": "soc1-thermal",
+                "temp_c": 52.843
+            }
+        ],
+        "source": "/sys/class/thermal/thermal_zone*/temp",
+        "status": "ok"
+    },
+    "power_mode": {
+        "value": "MAXN_SUPER",
+        "mode_id": 0,
+        "source": "nvpmodel -q",
+        "status": "ok"
+    }
+}
