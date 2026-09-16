@@ -39,11 +39,11 @@ which point nobody remembers how the venv was made.
 
 Five standalone probes reading sysfs, /proc, and CLI tools:
 
-- **`probe_torch`**: The CPU module name from `/proc/device-tree/model`.
-- **`probe_cuda`**: Total RAM in kB (always less than 8 GB on Orin Nano).
-- **`probe_opencv`**: Which device the root filesystem boots from (NVMe, SD, or other).
-- **`probe_tensorrt`**: Whether an NVMe drive exists in `/sys/block/nvme0n1` (fitted ≠ booted-from).
-- **`probe_l4t`**: Two PCIe numbers—what the link *can* do (capability) and what it *did* do (negotiated).
+- **`probe_torch`**: Imports `PyTorch` to report its version, verify CUDA access and device name, and diagnose whether a stock PyPI wheel or environment misconfiguration is hiding the GPU..
+- **`probe_cuda`**: Reads and parses `/usr/local/cuda/version.json` to verify that the CUDA toolkit manifest exists, extracts the installed CUDA version, and returns its major-minor release line..
+- **`probe_opencv`**: Imports `cv2` to extract its version and calls `cv2.cuda.getCudaEnabledDeviceCount` to determine whether the library was built with GPU hardware acceleration or is the default CPU-only build.
+- **`probe_tensorrt`**: Imports `tensorrt` to retrieve its installed version, flagging if an isolated virtual environment missing `--system-site-packages` is preventing access to system-level bindings.
+- **`probe_l4t`**: Reads `/etc/nv_tegra_release` and uses regex to parse the board's Linux for Tegra (L4T) board support package release and revision numbers into a unified version string.
 
 All reads use a `root` parameter so tests can inject fake filesystems. When you cannot read something, you return `unknown(source, why)`, not a plausible default.
 
@@ -51,11 +51,19 @@ All reads use a `root` parameter so tests can inject fake filesystems. When you 
 
 The instructions for writing the code are provided in slides in `Module 1` on ELMS. The slide numbers for each of the function are mentioned below -
 
-1. **probe_torch**: slide 6
-2. **probe_cuda**: slide 8
-3. **probe_opencv**: slide 10.
-4. **probe_tensorrt**: slide 11.
-5. **probe_l4t**: slide 13.
+1. **probe_torch**: page 4-5
+2. **probe_cuda**: page 6
+3. **probe_opencv**: page 7.
+4. **probe_tensorrt**: page 8.
+5. **probe_l4t**: page 9.
+
+## How to clone lab02 code
+
+```
+git remote add upstream https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git pull upstream main
+git push origin main
+```
 
 ## How to Run
 
@@ -63,7 +71,7 @@ The instructions for writing the code are provided in slides in `Module 1` on EL
 cd lab02/
 
 # Generate the report on the board
-sudo python probes.py
+python probes.py
 ```
 
 After completing the code, please validate the resulting JSON output file against `sample_system_report.json` to ensure it conforms to the expected format before submission.
@@ -90,9 +98,9 @@ git push -u origin solution2
 
 ## Analysis
 
-1. **probe_torch**: The CPU module name is readable.
-2. **probe_cuda**: Total memory ≥ 6 GB (Orin Nano should report ~7.6 GB).
-3. **probe_opencv**: Root filesystem is on `/dev/nvme0n1`, not `/dev/mmcblk0p1`.
-4. **probe_tensorrt**: An NVMe drive exists and reports a model.
-5. **probe_l4t**: Both PCIe capability and negotiated speed are known.
+1. **probe_torch**: probes if you have torch or not.
+2. **probe_cuda**: probes if you have cuda or not.
+3. **probe_opencv**: probes if you have opencv or not.
+4. **probe_tensorrt**: probes if you have tensorrt or not.
+5. **probe_l4t**: probes if you have l4t or not.
 
