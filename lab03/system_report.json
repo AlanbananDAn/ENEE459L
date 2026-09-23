@@ -1,0 +1,74 @@
+{
+    "warmup_boundary": {
+        "value": 1,
+        "source": "leading prefix above (1 + 0.5) x median of the run's second half",
+        "status": "ok",
+        "settled_rate_ms": 15.1184,
+        "threshold_ms": 22.6776,
+        "tolerance": 0.5,
+        "retained": 99
+    },
+    "summarize_setup": {
+        "n": 100,
+        "mean": 18.6681,
+        "std": 36.052,
+        "min": 14.8017,
+        "max": 375.5789,
+        "p50": 15.0922,
+        "p95": 15.2567,
+        "p99": 19.7481
+    },
+    "is_multimodal": {
+        "value": true,
+        "source": "widest trimmed gap >= 20.0x the median gap, with >= 10% of samples on each side",
+        "status": "ok",
+        "gap_ratio": 21.99,
+        "widest_gap_ms": 0.0563,
+        "typical_gap_ms": 0.0026,
+        "modes": [
+            {
+                "n": 40,
+                "share": 0.44,
+                "median_ms": 14.9326
+            },
+            {
+                "n": 50,
+                "share": 0.56,
+                "median_ms": 15.1561
+            }
+        ]
+    },
+    "probe_power_state": {
+        "value": "MAXN_SUPER",
+        "source": "nvpmodel -q",
+        "status": "ok",
+        "mode_index": 2,
+        "jetson_clocks": false,
+        "jetson_clocks_source": {
+            "value": "scaling_min_freq=729600, scaling_max_freq=1728000",
+            "source": "sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq vs sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
+            "status": "ok"
+        }
+    },
+    "probe_telemetry": {
+        "temperature_c": {
+            "value": 53.75,
+            "source": "sys/devices/virtual/thermal/*/temp",
+            "status": "ok",
+            "zone": "thermal_zone8",
+            "zones_read": 6
+        },
+        "power_mw": {
+            "value": null,
+            "source": "sys/bus/i2c/drivers/ina3221/*/in1_input | sys/bus/i2c/drivers/ina3221/*/in_power0_input",
+            "status": "unknown",
+            "detail": "none of the documented INA3221 rail paths could be read"
+        },
+        "gpu_utilization_percent": {
+            "value": 32.9,
+            "source": "sys/devices/platform/gpu.0/load",
+            "status": "ok",
+            "units": "per-mille / 10"
+        }
+    }
+}

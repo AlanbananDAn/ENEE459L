@@ -167,7 +167,12 @@ def read_text(root: Path, rel: str) -> str | None:
     """Read `root/rel`, returning None if it is missing or unreadable."""
     p = Path(root) / rel.lstrip("/")
     try:
-        return p.read_text(errors="replace").strip("\x00").strip()
+        with open(p, "rb") as f:
+            raw = f.read()
+        if raw is None:
+            return None
+        text = raw.decode("utf-8", errors="ignore").strip("\x00").strip()
+        return text if text else None
     except (OSError, UnicodeDecodeError):
         return None
 
